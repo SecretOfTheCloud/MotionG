@@ -48,6 +48,8 @@ class Model(nn.Module):
         G3 = self.Gating3(G2)
 
         hidden = self.dropout0(x)
+        # print(self.w00(x).shape)
+        # print(G3.shape)
 
         hidden = self.w00(x) * G3[:,0:1] + self.w01(x) * G3[:,1:2] \
             + self.w02(x) * G3[:,2:3] + self.w03(x) * G3[:,3:4] \
@@ -65,5 +67,7 @@ class Model(nn.Module):
             + self.w22(hidden) * G3[:,2:3] + self.w23(hidden) * G3[:,3:4] \
             + self.w24(hidden) * G3[:,4:5] + self.w25(hidden) * G3[:,5:6] \
             + self.w26(hidden) * G3[:,6:7] + self.w27(hidden) * G3[:,7:8] \
+
+        # print(x[0:,-18:-1])
             
         return result

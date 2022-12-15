@@ -19,7 +19,13 @@ def train_prepare(batch, hidden, dropout, device, path, learn_rate, test_rate):
     data = np.load(path)
     x, y = normalize(data['X'].astype(np.float32), data['Y'].astype(np.float32))
     z = data['Z'].astype(np.float32)
+    print(z.shape)
+
     p = copy.deepcopy(x[:,-12:])
+    x_runtime = x[300:301]
+    p_runtime = p[300:301]
+    z_time = z[300:301]
+    np.savez_compressed('./runtime_data.npz', X=x_runtime, P=p_runtime, Z=z_time)
     
     indices = list(range(len(x)))
     test_number = int(test_rate * len(x))
@@ -48,6 +54,8 @@ def train(model, optimizer, train_data, test_data, epochs, device, gamma = 0.01)
             optimizer.zero_grad()
             output = model(x, p, z)
             loss = criterion(output, y)
+            # print(11111111111)
+            # print(p)
             loss.backward()
             optimizer.step()
             avg_train_loss = (avg_train_loss * index + loss.item()) / (index + 1)
@@ -89,9 +97,9 @@ if __name__ == '__main__':
     
     build_path(['training'])
         
-    model, optimizer, train_data, test_data = train_prepare(64, 512, 0.7, device, 'database1116_1.npz', 0.0005, 0.1)
-    # for name in model.state_dict():
-    #     print(name)
-    # print(model.__dict__)
-    # print(model.module.w00)
-    train(model, optimizer, train_data, test_data, 6, device)
+    model, optimizer, train_data, test_data = train_prepare(64, 512, 0.7, device, './datasets/database1210_1.npz', 0.0005, 0.1)
+    for name in model.state_dict():
+        print(name)
+    print(model.__dict__)
+    print(model.module.w00)
+    train(model, optimizer, train_data, test_data, 4000, device)

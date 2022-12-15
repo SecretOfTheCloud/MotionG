@@ -27,3 +27,21 @@ def normalize(X, Y):
     X = (X - Xmean) / Xstd
     Y = (Y - Ymean) / Ystd
     return X, Y
+
+def Run_denormalize_Y(Y):
+    Ymean = np.fromfile('training/Ymean.bin',dtype=np.float32)
+    Ystd = np.fromfile('training/Ystd.bin',dtype=np.float32)
+    # print(Ystd.shape)
+    return (Y*Ystd)+Ymean
+
+def Run_denormalize_X(X):
+    Xmean = np.fromfile('training/Xmean.bin',dtype=np.float32)
+    Xstd = np.fromfile('training/Xstd.bin',dtype=np.float32)
+
+    return (X*Xstd)+Xmean
+
+def Run_normalize_X(X):
+    Xmean = np.fromfile('training/Xmean.bin',dtype=np.float32)
+    Xstd = np.fromfile('training/Xstd.bin',dtype=np.float32)
+
+    return (X - Xmean) / Xstd

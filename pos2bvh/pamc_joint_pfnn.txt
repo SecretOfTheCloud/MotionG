@@ -1,0 +1,2 @@
+Hips, LHipjoint, LeftUpLeg, LeftLeg, LeftFoot, LeftToeBase, RHipjoint, RightUpLeg, RightLeg, RightFoot, RightToeBase, LowerBack, Spine, Spine1, Neck, Neck1, Head, LeftShoulder, LeftArm, LeftForeArm, LeftHand, LeftFingerBase, LeftHandIndex1, LThumb, RightShoulder, RightArm, RightForeArm, RightHand, RightFingerBase, RightHandIndex1, RThumb
+-1,    0,			    1,		    2,		    3,		    4, 0,			    6,		    7,		    8,		    9,    0,			    11,			12,		    13,		    14,         15,    13,			    17,			18,			19,		    20,		    21,			20,    13,			    24,			25,			26,		    27,		    28,			27
